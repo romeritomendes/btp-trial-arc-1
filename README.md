@@ -21,15 +21,15 @@ cf create-service abap-trial shared my-abap-instance -c .\params-trial.json
 cf create-service-key my-abap-instance default
 ```
 
-## 4.Read Service Key for ABAP Trial instance
+## 5.Read Service Key for ABAP Trial instance
 
 ```sh
 cf service-key my-abap-instance default
 ```
 
-## 5.Create Destinations
+## 6.Create Destinations
 
-### 5.1.Basic Auth
+### 6.1.Basic Auth
 
 | Property | Value | Example |
 | ---------- | ---------- | ---------- |
@@ -40,7 +40,7 @@ cf service-key my-abap-instance default
 | User | Technical SAP user | ServiceKey: default.uaa.clientid |
 | Password | Technical SAP password | ServiceKey: default.uaa.clientsecret |
 
-### 5.2.Propagation
+### 6.2.Propagation
 
 | Property | Value | Example |
 | ---------- | ---------- | ---------- |
@@ -52,7 +52,7 @@ cf service-key my-abap-instance default
 | Client Secret | ```Technical SAP password``` | ServiceKey: default.uaa.clientsecret |
 | Token Service URL | ```http://<subaccount>.authentication.<location>.hana.ondemand.com/oauth/token``` | ServiceKey: default.uaa.url |
 
-# Clone ARC-1
+# 7.Clone ARC-1
 
 ```sh
 git clone https://github.com/arc-mcp/arc-1.git
@@ -60,7 +60,7 @@ git clone https://github.com/arc-mcp/arc-1.git
 cd arc-1
 ```
 
-## Copy and Edit the MTA file (mta-overrides.mtaext)
+## 8.Copy and Edit the MTA file (mta-overrides.mtaext)
 
 ```sh
 cp mta-overrides.mtaext.example mta-overrides.mtaext
@@ -100,7 +100,7 @@ modules:
       - name: arc1-xsuaa
 ```
 
-## Build and Deploy to BTP 
+## 9.Build and Deploy to BTP 
 
 ```sh
 npm ci
@@ -108,7 +108,14 @@ npm ci
 npm run btp:build-deploy-ext
 ```
 
-## Add to Cloud Code
+## 10.Assign Roles to your user
+```sh
+ARC-1 Admin (dev)
+ARC-1 Developer + Data (dev)
+ARC-1 Viewer + SQL (dev)
+```
+
+## 11. Add to Cloud Code
 
 ```sh
 claude mcp add --transport http ARC-TRIAL https://<subaccount>-dev-arc1-mcp-server.cfapps.<location>.hana.ondemand.com/mcp
