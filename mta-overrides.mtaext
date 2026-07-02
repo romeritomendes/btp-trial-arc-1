@@ -1,0 +1,31 @@
+_schema-version: "3.1"
+ID: arc1-mcp-overrides
+extends: arc1-mcp
+
+modules:
+  - name: arc1-mcp-server
+    properties:
+      # ── Destinations (REQUIRED override) ─────────────────────────────
+      # BasicAuth destination for startup (feature probing, cache warmup)
+      SAP_BTP_DESTINATION: "SAP_TRIAL"
+
+      # PrincipalPropagation destination for per-user requests (with JWT)
+      SAP_BTP_PP_DESTINATION: "SAP_TRIAL_PP"
+
+      # ── Principal propagation behaviour ──────────────────────────────
+      # Enable per-user principal propagation (default in mta.yaml: true)
+      SAP_PP_ENABLED: "true"
+
+      # ── Safety / Authorization ───────────────────────────────────────
+      # Enable object mutations (create, update, delete)
+      SAP_ALLOW_WRITES: "true"
+
+      # Enable transport mutations (release, create, add to transport).
+      # Also requires SAP_ALLOW_WRITES=true.
+      SAP_ALLOW_TRANSPORT_WRITES: "true"
+
+      # Restrict writes to these packages (comma-separated, supports
+      # wildcards). Default in mta.yaml: "$TMP".
+      SAP_ALLOWED_PACKAGES: "Z*,Y*,$TMP"
+    requires:
+      - name: arc1-xsuaa
