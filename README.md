@@ -1,6 +1,7 @@
 # btp-trial-arc-1
 
 ## 1.Create BTP Cockpit Trial Account
+https://cockpit.hanatrial.ondemand.com/trial/
 
 ## 2.Create a local config file for the ABAP Trial instance
 ```json:params-trial.json
@@ -108,7 +109,7 @@ npm ci
 npm run btp:build-deploy-ext
 ```
 
-## 10.Assign Roles to your user
+## 10.Assign Roles to your User
 ```sh
 ARC-1 Admin (dev)
 ARC-1 Developer + Data (dev)
